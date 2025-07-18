@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koreait.studysystem.mapper.UserMapper">
+
+    <insert id="insertUser">
+        INSERT INTO users (username, password, email)
+        VALUES (#{username}, #{password}, #{email})
+    </insert>
+
+    <select id="findByUsername" resultType="com.koreait.studysystem.dto.User">
+        SELECT * FROM users WHERE username = #{username}
+    </select>
+
+    <select id="getMyCreatedStudies" resultType="com.koreait.studysystem.dto.Study">
+        SELECT * FROM studies WHERE creator_id = #{userId}
+    </select>
+
+    <select id="getMyAppliedStudies" resultType="com.koreait.studysystem.dto.Study">
+        SELECT s.* FROM studies s
+                            JOIN study_applicant sa ON s.id = sa.study_id
+        WHERE sa.user_id = #{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+</head>
+<body>
+
+<h2>내가 만든 스터디</h2>
+<ul>
+    <li th:each="study : ${createdStudies}" th:text="${study.title}">스터디 제목</li>
+</ul>
+<div th:if="${#lists.isEmpty(createdStudies)}">
+    생성한 스터디가 없습니다.
+</div>
+
+<h2>내가 신청한 스터디</h2>
+<ul>
+    <li th:each="study : ${appliedStudies}" th:text="${study.title}">스터디 제목</li>
+</ul>
+<div th:if="${#lists.isEmpty(appliedStudies)}">
+    신청한 스터디가 없습니다.
+</div>
+
+</body>
+</html>

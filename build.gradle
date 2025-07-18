@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.koreait'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 웹 기능
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 보안 (로그인, 로그아웃)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Thymeleaf 템플릿
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // MyBatis + MySQL
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    // 유효성 검증 (선택)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Lombok (선택)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.koreait.studysystem.mapper.StudyMapper">
+
+    <insert id="createStudy" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO studies (title, description, creator_id)
+        VALUES (#{title}, #{description}, #{creatorId})
+    </insert>
+
+    <select id="getAllStudies" resultType="com.koreait.studysystem.dto.Study">
+        SELECT * FROM studies ORDER BY id DESC
+    </select>
+
+    <select id="getStudyById" resultType="com.koreait.studysystem.dto.Study">
+        SELECT * FROM studies WHERE id = #{id}
+    </select>
+
+    <insert id="applyToStudy">
+        INSERT INTO study_applications (user_id, study_id)
+        VALUES (#{userId}, #{studyId})
+    </insert>
+
+    <select id="hasUserAlreadyApplied" resultType="boolean">
+        SELECT EXISTS (
+        SELECT 1 FROM study_applications
+        WHERE user_id = #{userId} AND study_id = #{studyId}
+        )
+    </select>
+
+</mapper>

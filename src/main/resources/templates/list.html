@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>스터디 목록</title>
+</head>
+<body>
+<h2>스터디 목록</h2>
+<a href="/studies/new">+ 스터디 만들기</a>
+<ul>
+    <li th:each="study : ${studies}">
+        <a th:href="@{|/studies/${study.id}|}" th:text="${study.title}"></a>
+    </li>
+</ul>
+</body>
+</html>
